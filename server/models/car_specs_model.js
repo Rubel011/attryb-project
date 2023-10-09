@@ -8,8 +8,9 @@ const oemSpecsSchema = new mongoose.Schema({
     mileage: { type: Number, required: true },
     powerInBHP: { type: Number, required: true },
     maxSpeed: { type: Number, required: true },
-},{
-    versionKey:false
+}, {
+    versionKey: false
 });
+const OEM_Specs = mongoose.model('OEM_Specs', oemSpecsSchema);
 
-module.exports = mongoose.model('OEM_Specs', oemSpecsSchema);
+module.exports = OEM_Specs 

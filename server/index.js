@@ -8,6 +8,7 @@ const swaggerSpec = require('./configs/swaggerConfig');
 const { connection } = require('./configs/db');
 const { successResponse, errorResponse } = require('./helpers/successAndError');
 const userRouter = require('./routes/user_router');
+const car_specsRouter = require('./routes/car_specs_router');
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
@@ -29,6 +30,8 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/users",userRouter)
+
+app.use("/carSpecs",car_specsRouter)
 
 // Start the server
 app.listen(port, async () => {
