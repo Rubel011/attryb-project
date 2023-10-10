@@ -14,3 +14,5 @@ car_inventoryRouter.put("/:id",authenticateToken,updateCarInventoryById)
 
 // DELETE route to delete an existing inventory item by ID
 car_inventoryRouter.delete("/:id",authenticateToken,deleteCarInventoryById)
+
+module.exports=car_inventoryRouter;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const marketplaceInventorySchema = new mongoose.Schema({
+const marketplaceInventorySchema =mongoose.Schema({
   kmsOnOdometer: { type: Number, required: true },
   majorScratches: { type: Boolean, required: true },
   originalPaint: { type: Boolean, required: true },
@@ -13,7 +13,7 @@ const marketplaceInventorySchema = new mongoose.Schema({
   mileage: { required: true, type: Number },
   description: { type: [String], required: true },
   oem_specsId: { type: mongoose.Schema.Types.ObjectId, ref: 'OEM_Specs', required: true },
-  userID: { type: Schema.Types.ObjectId, ref: "Users",required:true }
+  userID: { type: mongoose.Schema.Types.ObjectId, ref: "Users",required:true }
 
 });
 
