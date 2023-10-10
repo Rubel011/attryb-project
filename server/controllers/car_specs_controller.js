@@ -1,8 +1,6 @@
 const { successResponse, errorResponse } = require("../helpers/successAndError");
 const OEM_Specs = require("../models/car_specs_model");
 
-
-
 module.exports.addNewCarspecs = async (req, res) => {
     try {
         const {
@@ -34,7 +32,6 @@ module.exports.addNewCarspecs = async (req, res) => {
     }
 }
 
-
 module.exports.updateCarSpecs = async (req, res) => {
     try {
         const updatedSpec = await OEM_Specs.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -49,7 +46,6 @@ module.exports.updateCarSpecs = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 }
-
 
 module.exports.deleteCarSpecs = async (req, res) => {
     try {
@@ -71,6 +67,26 @@ module.exports.retriveAllCarSpecs = async (req, res) => {
         const specs = await OEM_Specs.find();
 
         return res.status(200).json(successResponse(200, "retriveAllCarSpecs details successfully", specs));
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports.searchCarSpecs = async (req, res) => {
+    try {
+        const { modelName, yearOfModel } = req.query;
+
+        const specs = await OEM_Specs.findOne({
+            modelName,
+            yearOfModel,
+        });
+
+        if (!specs) {
+            return res.status(404).json({ message: 'OEM specs not found' });
+        }
+
+        return res.status(200).json(specs);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal server error' });
